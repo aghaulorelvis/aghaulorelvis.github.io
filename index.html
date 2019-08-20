@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <style>
+        #mainHeading {
+            text-align: center;
+            color: blue;
+        }
+        #inputs{
+           text-align: center;
+           margin-top: 2em;
+           display: block;
+        }
+        .inputNum{
+            margin-left: 1em;
+        }
+        #sign {
+            margin-left: 2em;
+            margin-right: 2em;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        #mathsButtons {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            background-color: blue;
+        }
+        #calculate {
+            text-align: center;
+            margin-top: 2em;
+        }
+        #answer {
+            text-align: center;
+            margin-top: 1em;
+            font-size: 4em;
+            font-weight: bold;
+        }
+        #reset {
+            text-align: center;
+            margin-top: 2em;
+        }
+        #answerValue {
+          color: blue
+        }
+    </style>
+</head>
+<body>
+  <div class="mainContainer">
+    <div id="mainHeading">
+        <h1>Simple Calculator</h1>
+    </div>
+    <div id="inputs">
+        <label>Enter the first number here:</label><input id="firstNumber" class="inputNum" type="number">
+        <span id="sign">+</span>
+        <label>Enter the second number here:</label><input id="secondNumber" class="inputNum" type="number">
+    </div>
+    <div id="mathsButtons">
+        <input id="plus" class="mathButtons" type="button" value="Add (+)">
+        <input id="subtract" type="button" value="Subtract (-)">
+        <input id="multiply" type="button" value="Multiply (*)">
+        <input id="divide" type="button" value="Divide (/)">
+        <input id="modulus" type="button" value="Modulus (%)">
+    </div>
+    <div id="calculate">
+        <input id="calculateBtn" type="button" value="Calculate">
+    </div>
+    <div id="answer">
+        <span>Answer: <span id="answerValue"></span></span>
+    </div>
+    <div id="reset">
+        <input type="button" id="resetBtn" name="reset" value="Reset">
+    </div>
+  </div>
+
+    <script>
+        //Get values from html  elements
+        sign = document.getElementById("sign").innerHTML;
+
+        answer = document.getElementById('answerValue');
+
+        let add = document.getElementById('plus');
+        let minus = document.getElementById('subtract');
+        let divide = document.getElementById('divide');
+        let multiply = document.getElementById('multiply');
+        let modulus = document.getElementById('modulus');
+        let calc = document.getElementById('calculateBtn');
+
+        add.addEventListener('click', function(){
+            sign = "+"
+            document.getElementById('sign').innerHTML = sign;
+        });
+        subtract.addEventListener('click', function(){
+            sign = "-";
+            document.getElementById('sign').innerHTML = sign;
+        });
+        multiply.addEventListener('click', function(){
+            sign = "*"
+            document.getElementById('sign').innerHTML = sign;
+        });
+        divide.addEventListener('click', function(){
+            sign = "/"
+            document.getElementById('sign').innerHTML = sign;
+        });
+        modulus.addEventListener('click', function(){
+            sign = "%"
+            document.getElementById('sign').innerHTML = sign;
+        });
+
+        //Mathematical calculation and display
+        calc.addEventListener('click', function(){
+            //Get the values of the first and second number from the html inputs
+            firstNumber = document.getElementById("firstNumber").value;
+            secondNumber = document.getElementById("secondNumber").value;
+
+            //Calculate and display the value
+            if(firstNumber == NaN || secondNumber == NaN || firstNumber == "" || secondNumber == ""){
+                alert('Please enter a valid number');
+            }
+            else{
+                firstNumber = Number(firstNumber);
+                secondNumber = Number(secondNumber);
+
+                if (sign == "+") {
+                  answer.innerHTML = firstNumber + secondNumber;
+                }else if (sign == "-") {
+                  answer.innerHTML = firstNumber - secondNumber;
+                }else if (sign == "*") {
+                  answer.innerHTML = firstNumber * secondNumber;
+                }else if (sign == "/") {
+                  answer.innerHTML = firstNumber / secondNumber;
+                }else if (sign == "%") {
+                  answer.innerHTML = firstNumber % secondNumber;
+                }
+            }
+        });
+
+        let reset = document.getElementById('resetBtn');
+            reset.addEventListener('click', function(){
+            alert("Are you sure you want to reset the calculator?");
+            location.reload();
+        });
+
+    </script>
+</body>
+</html>
